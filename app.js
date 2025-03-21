@@ -1,7 +1,10 @@
 const SUPABASE_URL = 'https://mkaqtowoyddwftmqlhor.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1rYXF0b3dveWRkd2Z0bXFsaG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1MjM2MTksImV4cCI6MjA1ODA5OTYxOX0.vTvxyrbz2Bag3SN05wnRaVuaRDLu1oMCEwoJUK5ad38';
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// INI PERUBAHANNYA, PAKE window.supabase
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+console.log('Supabase initialized:', supabase);
 
 const uploadForm = document.getElementById('uploadForm');
 const fileList = document.getElementById('fileList');
