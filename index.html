@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DBMS Sederhana</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+  <h1 class="text-2xl font-bold mb-5">Webapp DBMS Sederhana</h1>
+  
+  <form id="uploadForm" class="flex flex-col space-y-3 bg-white p-4 shadow-md rounded">
+    <input type="file" id="fileInput" required class="border p-2" />
+    <input type="text" id="namaFile" placeholder="Nama file" class="border p-2" required />
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Upload</button>
+  </form>
+
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-4">Daftar Dokumen</h2>
+    <ul id="fileList" class="space-y-2"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
