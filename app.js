@@ -1,4 +1,3 @@
-// Ganti dengan URL & API KEY Supabase kamu
 const SUPABASE_URL = 'https://mkaqtowoyddwftmqlhor.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1rYXF0b3dveWRkd2Z0bXFsaG9yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1MjM2MTksImV4cCI6MjA1ODA5OTYxOX0.vTvxyrbz2Bag3SN05wnRaVuaRDLu1oMCEwoJUK5ad38';
 
@@ -7,12 +6,16 @@ const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const uploadForm = document.getElementById('uploadForm');
 const fileList = document.getElementById('fileList');
 
-// Tampilkan file dari DB
 async function loadFiles() {
   const { data, error } = await supabase
     .from('dokumen_files')
     .select('*')
     .order('tanggal_upload', { ascending: false });
+
+  if (error) {
+    console.error('Error ambil file:', error);
+    return;
+  }
 
   fileList.innerHTML = '';
   data.forEach(file => {
@@ -26,48 +29,58 @@ async function loadFiles() {
   });
 }
 
-// Upload file ke Storage + insert DB
 uploadForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const fileInput = document.getElementById('fileInput');
   const namaFile = document.getElementById('namaFile').value.trim();
 
-  if (!fileInput.files.length) return alert('Pilih file terlebih dahulu!');
+  if (!fileInput.files.length) {
+    alert('Pilih file terlebih dahulu!');
+    return;
+  }
 
   const file = fileInput.files[0];
   const fileExt = file.name.split('.').pop();
   const filePath = `${Date.now()}.${fileExt}`;
 
-  // Upload ke Storage Supabase
-  const { data, error } = await supabase.storage
-    .from('dokumen') // nama bucket
+  console.log('Mulai upload:', file.name);
+
+  const { data: uploadData, error: uploadError } = await supabase.storage
+    .from('dokumen')
     .upload(filePath, file);
 
-  if (error) {
-    console.error('Upload error:', error);
-    return alert('Gagal upload file!');
+  if (uploadError) {
+    console.error('Upload error:', uploadError);
+    alert('Gagal upload file! ' + uploadError.message);
+    return;
   }
 
-  const { publicURL } = supabase
+  console.log('Upload berhasil:', uploadData);
+
+  const { data: publicUrlData } = supabase
     .storage
     .from('dokumen')
     .getPublicUrl(filePath);
 
-  // Simpan ke table database
-  const { error: dbError } = await supabase
+  const publicURL = publicUrlData.publicUrl;
+  console.log('Public URL:', publicURL);
+
+  const { data: insertData, error: dbError } = await supabase
     .from('dokumen_files')
     .insert([{ nama_file: namaFile, file_url: publicURL }]);
 
   if (dbError) {
     console.error('DB Error:', dbError);
-    return alert('Gagal simpan data!');
+    alert('Gagal simpan data! ' + dbError.message);
+    return;
   }
+
+  console.log('Data berhasil disimpan:', insertData);
 
   alert('File berhasil diupload!');
   uploadForm.reset();
   loadFiles();
 });
 
-// Load data pertama kali
 loadFiles();
