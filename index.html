@@ -2,45 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DBMS Sederhana</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 p-5">
-  <!-- Progress Bar -->
-<div class="w-full bg-gray-200 rounded h-4 mb-4">
-  <div id="progressBar" class="bg-blue-500 h-4 rounded w-0"></div>
-</div>
-
-<form id="uploadForm" class="space-y-4">
-  <input type="text" id="namaFile" placeholder="Nama File" class="border p-2 w-full rounded" required />
-  <input type="file" id="fileInput" class="border p-2 w-full rounded" required />
-  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Upload</button>
-</form>
-
-<ul id="fileList" class="space-y-2 mt-4"></ul>
-
-<div class="flex justify-center mt-4">
-  <button id="loadMoreBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Load More</button>
-</div>
-
-<!-- Dark mode toggle -->
-<div class="fixed bottom-4 right-4">
-  <button id="toggleDarkMode" class="bg-gray-800 text-white px-3 py-2 rounded-full shadow hover:bg-gray-700 transition">🌙</button>
-</div>
-
-<!-- Modal PDF Viewer -->
-<div id="pdfModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-  <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full h-[80%] relative">
-    <button id="closePdfModal" class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold">✖️</button>
-    <iframe id="pdfViewer" src="" class="w-full h-full rounded-b-lg"></iframe>
+<body class="bg-gray-100 p-6 flex flex-col items-center min-h-screen">
+  
+  <!-- Container -->
+  <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
+    
+    <!-- Progress Bar -->
+    <div class="w-full bg-gray-300 rounded-full h-4 mb-4">
+      <div id="progressBar" class="bg-blue-600 h-4 rounded-full w-0 transition-all"></div>
+    </div>
+    
+    <!-- Upload Form -->
+    <form id="uploadForm" class="space-y-4">
+      <div>
+        <label for="namaFile" class="block text-sm font-medium text-gray-700">Nama File</label>
+        <input type="text" id="namaFile" placeholder="Masukkan nama file" class="border border-gray-300 p-2 w-full rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+      </div>
+      <div>
+        <label for="fileInput" class="block text-sm font-medium text-gray-700">Pilih File</label>
+        <input type="file" id="fileInput" class="border border-gray-300 p-2 w-full rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Upload</button>
+    </form>
+    
+    <!-- File List -->
+    <ul id="fileList" class="space-y-2 mt-4"></ul>
   </div>
-</div>
-
+  
+  <!-- Modal PDF Viewer -->
+  <div id="pdfModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full h-[80%] relative">
+      <button id="closePdfModal" class="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl font-bold">✖️</button>
+      <iframe id="pdfViewer" src="" class="w-full h-full rounded-b-lg"></iframe>
+    </div>
+  </div>
 
   <!-- Supabase JS v1 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
-
   <!-- App.js -->
   <script src="app.js"></script>
 </body>
