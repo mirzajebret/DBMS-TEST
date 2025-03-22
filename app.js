@@ -24,7 +24,7 @@ async function loadFiles() {
 
   data.forEach(file => {
     const li = document.createElement('li');
-    li.className = 'flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-2 rounded shadow gap-2';
+    li.className = 'flex flex-col md:flex-row justify-between items-start md:items-end bg-gray-700 p-2 rounded shadow gap-2';
 
     const fileName = file.nama_file;
     const filePath = file.file_path;
@@ -49,8 +49,8 @@ async function loadFiles() {
           <span>${file.nama_file}</span>
         </div>
         <div class="flex space-x-3">
-          <a href="${customPublicUrl}" target="_blank" class="text-blue-500 underline">Download</a>
-          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="text-red-500 underline">Delete</button>
+          <a href="${customPublicUrl}" target="_blank" class="preview-pdf-btn bg-green-500 text-white px-3 py-1 rounded">Download</a>
+          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="preview-pdf-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
         </div>
       `;
 
