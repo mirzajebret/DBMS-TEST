@@ -105,28 +105,7 @@ async function deleteFile(fileId, filePath) {
     alert('Gagal hapus file dari storage!');
     return;
   }
-  const toggleDarkModeBtn = document.getElementById('toggleDarkMode');
 
-  function applyDarkMode(isDark) {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      toggleDarkModeBtn.innerText = '☀️';
-    } else {
-      document.documentElement.classList.remove('dark');
-      toggleDarkModeBtn.innerText = '🌙';
-    }
-  }
-  
-  toggleDarkModeBtn.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    applyDarkMode(!isDark);
-    localStorage.setItem('theme', !isDark ? 'dark' : 'light');
-  });
-  
-  // INIT dark mode sesuai localStorage
-  const savedTheme = localStorage.getItem('theme');
-  applyDarkMode(savedTheme === 'dark');
-  
   // Hapus dari database
   const { error: deleteDbError } = await supabase
     .from('dokumen_files')
