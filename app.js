@@ -49,8 +49,8 @@ async function loadFiles() {
           <span>${file.nama_file}</span>
         </div>
         <div class="flex space-x-3">
-          <a href="${customPublicUrl}" target="_blank" class="preview-pdf-btn bg-green-500 text-white px-3 py-1 rounded">Download</a>
-          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="preview-pdf-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+          <a href="${customPublicUrl}" target="_blank" class="bg-green-500 text-white px-3 py-1 rounded">Download</a>
+          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
         </div>
       `;
 
