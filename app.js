@@ -36,7 +36,7 @@ async function loadFiles() {
     let previewElement = '';
 
     if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileExt)) {
-      previewElement = `<img src="${customPublicUrl}" alt="${fileName}" class="w-24 h-24 object-cover rounded border" />`;
+      previewElement = `<img src="${customPublicUrl}" alt="${fileName}" class="w-50 h-50 object-cover rounded " />`;
     } else if (fileExt === 'pdf') {
       previewElement = `<button class="preview-pdf-btn bg-blue-500 text-white px-3 py-1 rounded" data-url="${customPublicUrl}">Preview PDF</button>`;
     } else {
@@ -44,15 +44,23 @@ async function loadFiles() {
     }
 
     li.innerHTML = `
-         <div class="flex items-center space-x-4">
+      <div class="flex flex-col space-y-2 p-3 max-w-sm w-full rounded-lg shadow mx-auto">
+        <div class="flex flex-col items-center space-y-2">
           ${previewElement}
-          <span>${file.nama_file}</span>
+          <span class="text-white font-medium truncate w-full text-center">${file.nama_file}</span>
         </div>
-        <div class="flex space-x-3">
-          <a href="${customPublicUrl}" target="_blank" class="bg-green-500 text-white px-3 py-1 rounded">Download</a>
-          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+        <div class="flex flex-col space-y-2">
+          <a href="${customPublicUrl}" target="_blank" class="bg-green-500 text-white px-3 py-2 rounded w-full text-center">
+            Download
+          </a>
+          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="bg-red-500 text-white px-3 py-2 rounded w-full text-center">
+            Delete
+          </button>
         </div>
-      `;
+      </div>
+
+  `;
+  
 
     fileList.appendChild(li);
   });
