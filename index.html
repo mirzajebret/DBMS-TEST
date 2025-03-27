@@ -21,25 +21,44 @@
       <iframe id="pdfViewer" src="" class="w-full h-full rounded-b-lg"></iframe>
     </div>
   </div>
-  <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 sticky bottom-0 w-full ">
+  <div class="bg-gray-800 rounded-lg border border-gray-700 sticky bottom-0 w-full">
+    <!-- Toggle Button -->
+    <button id="toggleUploadSection" class="w-full bg-gray-700 text-white font-semibold py-2 rounded-t-lg hover:bg-gray-600 transition flex justify-center items-center">
+      <span id="toggleArrow">▼</span>
+    </button>
     
     <!-- Upload Form -->
-    <form id="uploadForm" class="space-y-4 ">
-      <div>
-        <input type="text" id="namaFile" placeholder="Masukkan nama file" class="border border-gray-600 bg-gray-700 p-2 w-full rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white" required />
-      </div>
-      <div>
-        <input type="file" id="fileInput" class="border border-gray-600 bg-gray-700 p-2 w-full rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white" required />
-      </div>
-      <div class="w-full bg-gray-700 rounded-full h-4 mb-4 ">
-        <div id="progressBar" class="bg-purple-500 h-4 rounded-full w-0 transition-all"></div>
-      </div>
-      <button type="submit" class="w-full bg-purple-600 text-white font-semibold py-2 rounded-lg hover:bg-purple-700 transition">Upload</button>
-    </form>
+    <div id="uploadSection" class="p-6 space-y-4 hidden">
+      <form id="uploadForm" class="space-y-4">
+        <div>
+          <input type="text" id="namaFile" placeholder="Masukkan nama file" class="border border-gray-600 bg-gray-700 p-2 w-full rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white" required />
+        </div>
+        <div>
+          <input type="file" id="fileInput" class="border border-gray-600 bg-gray-700 p-2 w-full rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white" required />
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-4 mb-4">
+          <div id="progressBar" class="bg-purple-500 h-4 rounded-full w-0 transition-all"></div>
+        </div>
+        <button type="submit" class="w-full bg-purple-600 text-white font-semibold py-2 rounded-lg hover:bg-purple-700 transition">Upload</button>
+      </form>
+    </div>
   </div>
+  
   <!-- Supabase JS v1 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
   <!-- App.js -->
   <script src="app.js"></script>
+  
+  <script>
+    // Toggle functionality for the upload section
+    const toggleButton = document.getElementById('toggleUploadSection');
+    const uploadSection = document.getElementById('uploadSection');
+    const toggleArrow = document.getElementById('toggleArrow');
+
+    toggleButton.addEventListener('click', () => {
+      const isHidden = uploadSection.classList.toggle('hidden');
+      toggleArrow.textContent = isHidden ? '▼' : '▲';
+    });
+  </script>
 </body>
 </html>
