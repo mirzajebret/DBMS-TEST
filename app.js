@@ -44,7 +44,7 @@ async function loadFiles() {
     }
 
     li.innerHTML = `
-      <div class="flex flex-col space-y-2 p-3 max-w-sm w-full rounded-lg shadow mx-auto">
+      <div class="flex flex-col space-y-2 p-3 max-w-sm w-full rounded-lg mx-auto">
         <div class="flex flex-col items-center space-y-2">
           ${previewElement}
           <span class="text-white font-medium truncate w-full text-center">${file.nama_file}</span>
