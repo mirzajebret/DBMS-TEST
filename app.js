@@ -50,10 +50,10 @@ async function loadFiles() {
           <span class="text-white font-medium truncate w-full text-center">${file.nama_file}</span>
         </div>
         <div class="flex flex-col space-y-2">
-          <a href="${customPublicUrl}" target="_blank" class="bg-green-500 text-white px-3 py-2 rounded w-full text-center">
+          <a href="${customPublicUrl}" target="_blank" class="bg-gray-600 font-semibold text-green-500 px-3 py-2 rounded w-full text-center">
             Download
           </a>
-          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="bg-red-500 text-white px-3 py-2 rounded w-full text-center">
+          <button onclick="deleteFile('${file.id}', '${file.file_path}')" class="bg-gray-800  text-red-500 px-3 py-2 rounded w-full text-center">
             Delete
           </button>
         </div>
